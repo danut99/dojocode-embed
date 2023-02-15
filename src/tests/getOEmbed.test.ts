@@ -1,17 +1,42 @@
-import { getOEmbed } from "@/utils/getOEmbed";
+import axios from 'axios';
 
-const challengeId = '62a9afc487d07e7b5c63e7ec';
-const encryptedString = "zj7rfqsCgz6eclTlcUSiOUb9fu9LN1oCp%2FAzy3g3GNK7PEfVWrBWxL4pYtd5mjPI7HQrRf%2FCHGY1NUW%2B0NF91pPYVbiy1WvlMaKbkQpk5eMznzWocO1%2B1DXEjklP%2FI%2FfqQ0asAMfmLfJB6LW6%2FVc7poFXe5VcNzL8nru3I%2FvSqhE2570jtHCH3l4EamrxvwibTeu8fnAZ2bk1fznoV4IiY5xhPpxOhFowjIp118Rt0s%3D";
+import { getOEmbed} from '@/utils/getOEmbed';
 
-test('getOEmbed function return an object', () => {
-  expect(typeof getOEmbed(challengeId, encryptedString)).toBe('object');
-});
+jest.mock('axios');
 
-test('getOEmbed function returns an object with specific attributes', async () => {
-  const result = await getOEmbed(challengeId, encryptedString);
-  expect(result).toHaveProperty('success', true);
-  expect(result).toHaveProperty('title', 'Shopping list');
-  expect(result).toHaveProperty('author_name', 'Sebastian Lucaciu');
-  expect(result).toHaveProperty('type', 'rich');
-  expect(result).toHaveProperty('html', '<iframe style="width: 100%; overflow: hidden;" src="https://code-challenge.springtech.co/challenge/sebastian_lucaciu/shopping-list?auth=zj7rfqsCgz6eclTlcUSiOUb9fu9LN1oCp%2FAzy3g3GNK7PEfVWrBWxL4pYtd5mjPI7HQrRf%2FCHGY1NUW%2B0NF91pPYVbiy1WvlMaKbkQpk5eMznzWocO1%2B1DXEjklP%2FI%2FfqQ0asAMfmLfJB6LW6%2FVc7poFXe5VcNzL8nru3I%2FvSqhE2570jtHCH3l4EamrxvwibTeu8fnAZ2bk1fznoV4IiY5xhPpxOhFowjIp118Rt0s%3D" frameborder="0" width="256" height="256" scrolling="auto"></iframe>');
+describe('getOEmbed', () => {
+  const mockOEmbedResponse = {
+    success: true,
+    title: 'My Title',
+    author_name: 'My Author',
+    type: 'video',
+    html: '<p>This is a test challenge</p>',
+    width: 280,
+    height: 280,
+  };
+
+  beforeEach(() => {
+    (axios.get as jest.Mock).mockResolvedValue({ data: mockOEmbedResponse });
+  });
+
+  it('should call the oembed API with the correct URL and auth hash', async () => {
+    const challengeId = 'some_challenge_id';
+    const hash = 'some_hash';
+
+    const expectedUrl = `${process.env.CHALLENGE_SERVER_DOMAIN}/api/v1/oembed?`;
+    const expectedParams = { url: challengeId, auth: hash };
+
+    await getOEmbed(challengeId, hash);
+
+    expect(axios.get).toHaveBeenCalledWith(expectedUrl, { params: expectedParams });
+  });
+
+  it('should return the response data as an OEmbedResponse object', async () => {
+    const challengeId = 'some_challenge_id';
+    const hash = 'some_hash';
+
+    const response = await getOEmbed(challengeId, hash);
+
+    expect(response).toEqual(mockOEmbedResponse);
+  });
 });

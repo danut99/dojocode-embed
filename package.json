@@ -1,5 +1,5 @@
 {
-  "name": "code-challenge-test",
+  "name": "code-challenge-embed",
   "version": "1.0.0",
   "description": "Embedding Dojo Code Challenges.",
   "main": "dist/index.js",
