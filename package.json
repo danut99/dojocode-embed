@@ -1,5 +1,5 @@
 {
-  "name": "test1",
+  "name": "test-dogo",
   "version": "1.0.0",
   "description": "Embedding Dojo Code Challenges.",
   "main": "dist/index.js",
