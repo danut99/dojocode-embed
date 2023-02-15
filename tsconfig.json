@@ -3,15 +3,18 @@
     "require": ["tsconfig-paths/register"]
   },
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "module": "commonjs",
     "declaration": true,
+    "rootDir": "./",
+    "moduleResolution": "node",
     "outDir": "./dist",
     "strict": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
     },
+    "esModuleInterop": true,
   },
   "include": ["src"],
   "exclude": ["node_modules"]

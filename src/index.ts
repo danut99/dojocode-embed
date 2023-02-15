@@ -1,7 +1,12 @@
+import moduleAlias from 'module-alias';
+
 import { AuthData } from '@/types/authData';
 import { encryptData } from '@/utils/ecryptData';
 import { getOEmbed } from '@/utils/getOEmbed';
 
+moduleAlias.addAliases({
+  '@': `${__dirname}`,
+});
 /**
  * Retrieve Dojo embed HTML code.
  *
