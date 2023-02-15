@@ -7,7 +7,6 @@ import { AuthData } from '@/types/authData';
 import { encryptData } from '@/utils/ecryptData';
 import { getOEmbed } from '@/utils/getOEmbed';
 
-console.log(__dirname);
 /**
  * Retrieve Dojo embed HTML code.
  *

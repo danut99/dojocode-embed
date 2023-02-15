@@ -1,5 +1,5 @@
 {
-  "name": "boca-test-dojo",
+  "name": "code-challenge-test",
   "version": "1.0.0",
   "description": "Embedding Dojo Code Challenges.",
   "main": "dist/index.js",
