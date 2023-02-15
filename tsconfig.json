@@ -6,7 +6,6 @@
     "target": "esnext",
     "module": "commonjs",
     "declaration": true,
-    "rootDir": "./",
     "moduleResolution": "node",
     "outDir": "./dist",
     "strict": true,
