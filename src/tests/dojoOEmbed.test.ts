@@ -27,12 +27,19 @@ describe('dojoOEmbed', () => {
       width: 280,
       height: 280,
     };
+    const mockSecretData = {
+      secretKey: "32 byte",
+      secretIv: "32",
+      algorithm: "aes",
+      challengeServerDomain: "https://dojo-code.springtech.co"
+    };
+
     (getOEmbed as jest.MockedFunction<typeof getOEmbed>).mockResolvedValue(mockOEmbedResponse);
 
-    const oEmbedHtml = await dojoOEmbed(mockPayload);
+    const oEmbedHtml = await dojoOEmbed(mockPayload, mockSecretData);
 
-    expect(encryptData).toHaveBeenCalledWith(mockPayload);
-    expect(getOEmbed).toHaveBeenCalledWith(mockPayload.challengeId, mockEncryptedData);
+    expect(encryptData).toHaveBeenCalledWith(mockPayload, mockSecretData);
+    expect(getOEmbed).toHaveBeenCalledWith(mockPayload.challengeId, mockEncryptedData, mockSecretData.challengeServerDomain);
     expect(oEmbedHtml).toEqual(mockOEmbedResponse.html);
   });
 });

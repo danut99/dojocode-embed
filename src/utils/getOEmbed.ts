@@ -12,8 +12,8 @@ dotenv.config();
  * @param hash An auth hash to be used for making the API call.
  *
  */
-export async function getOEmbed(challengeId: string, hash: string): Promise<OEmbedResponse> {
-  const response = await axios.get(`${process.env.CHALLENGE_SERVER_DOMAIN}/api/v1/oembed?`, {
+export async function getOEmbed(challengeId: string, hash: string, challengeServerDomain: string): Promise<OEmbedResponse> {
+  const response = await axios.get(`${challengeServerDomain}/api/v1/oembed`, {
     params: {
       url: challengeId,
       auth: hash,
