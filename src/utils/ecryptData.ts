@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 import { createHash, createCipheriv } from 'crypto';
 
 import { AuthData } from '@/types/authData';
+import { SecretData } from '@/types/secretData';
 
 dotenv.config();
 
@@ -11,10 +12,10 @@ dotenv.config();
  * @param payload - Data to be encrypted.
  *
  */
-export function encryptData(payload: AuthData): string {
-  const secretKey = process.env.AUTH_SECRET_KEY;
-  const secretIv = process.env.AUTH_SECRET_IV;
-  const algorithm = process.env.AUTH_ALGORITHM;
+export function encryptData(payload: AuthData, secretData: SecretData): string {
+  const secretKey = secretData.secretKey;
+  const secretIv = secretData.secretIv;
+  const algorithm = secretData.algorithm;
   const userData = payload;
   userData.password = secretIv;
 

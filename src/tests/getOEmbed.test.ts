@@ -14,6 +14,7 @@ describe('getOEmbed', () => {
     width: 280,
     height: 280,
   };
+  const mockChallengeServerDomain = "https://dojo-code.springtech.co";
 
   beforeEach(() => {
     (axios.get as jest.Mock).mockResolvedValue({ data: mockOEmbedResponse });
@@ -23,10 +24,10 @@ describe('getOEmbed', () => {
     const challengeId = 'some_challenge_id';
     const hash = 'some_hash';
 
-    const expectedUrl = `${process.env.CHALLENGE_SERVER_DOMAIN}/api/v1/oembed?`;
+    const expectedUrl = `${mockChallengeServerDomain}/api/v1/oembed`;
     const expectedParams = { url: challengeId, auth: hash };
 
-    await getOEmbed(challengeId, hash);
+    await getOEmbed(challengeId, hash, mockChallengeServerDomain);
 
     expect(axios.get).toHaveBeenCalledWith(expectedUrl, { params: expectedParams });
   });
@@ -35,7 +36,7 @@ describe('getOEmbed', () => {
     const challengeId = 'some_challenge_id';
     const hash = 'some_hash';
 
-    const response = await getOEmbed(challengeId, hash);
+    const response = await getOEmbed(challengeId, hash, mockChallengeServerDomain);
 
     expect(response).toEqual(mockOEmbedResponse);
   });
