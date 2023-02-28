@@ -1,6 +1,6 @@
 {
-  "name": "dojo-embed-final-test",
-  "version": "1.4.0",
+  "name": "danutas99",
+  "version": "0.1.0",
   "description": "Embedding Dojo Code Challenges.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
