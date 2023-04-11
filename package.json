@@ -1,6 +1,6 @@
 {
-  "name": "@dojocode/dojo-embed",
-  "version": "0.0.1",
+  "name": "@dojocode/dojo-embed-danut",
+  "version": "0.1.0",
   "description": "Embedding Dojo Code Challenges.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
