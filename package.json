@@ -1,19 +1,20 @@
 {
-  "name": "embed-code-test",
-  "version": "1.0.0",
+  "name": "@dojocode/dojo-embed",
+  "version": "0.0.1",
   "description": "Embedding Dojo Code Challenges.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
-    "push": "yarn version patch && git push",
-    "push-minor": "yarn version minor && git push",
-    "push-major": "yarn version major && git push",
-    "prepare": "yarn run build",
+    "push": "yarn version --patch && git push",
+    "push-minor": "yarn version --minor && git push",
+    "push-major": "yarn version --major && git push",
+    "prepare": "yarn build",
     "prepublishOnly": "yarn test",
     "version": "git add -A src",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "privatePublish": "npm publish --registry https://registry.springtech.co --scope=@dojocode"
   },
   "repository": {
     "type": "git",

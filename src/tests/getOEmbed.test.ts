@@ -4,10 +4,11 @@ import { getOEmbed} from '@/utils/getOEmbed';
 import { mockOEmbedResponse, mockAuthSecret, mockAuthDetails } from '@/utils/mockData';
 
 jest.mock('axios');
+const mockedAxios = jest.mocked(axios.get);
 
 describe('getOEmbed', () => {
   beforeEach(() => {
-    (axios.get as jest.Mock).mockResolvedValue({ data: mockOEmbedResponse });
+    mockedAxios.mockResolvedValue({ data: mockOEmbedResponse });
   });
 
   it('should call the oembed API with the correct URL and auth hash', async () => {
